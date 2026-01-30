@@ -74,7 +74,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.oskar = import ../home;
+    users.oskar1233 = import ../home;
   };
 
   # Security

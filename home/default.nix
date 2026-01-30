@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.username = "oskar";
-  home.homeDirectory = "/home/oskar";
+  home.username = "oskar1233";
+  home.homeDirectory = "/home/oskar1233";
   home.stateVersion = "24.11";
 
   # Let home-manager manage itself
@@ -31,6 +31,10 @@
     fzf
     jq
     lazygit
+    tmux
+
+    # Other
+    # google-chrome
   ];
 
   # Neovim - using config directory approach
@@ -137,11 +141,11 @@
       "Mod+4".action = focus-workspace 4;
       "Mod+5".action = focus-workspace 5;
 
-      "Mod+Shift+1".action = move-column-to-workspace 1;
-      "Mod+Shift+2".action = move-column-to-workspace 2;
-      "Mod+Shift+3".action = move-column-to-workspace 3;
-      "Mod+Shift+4".action = move-column-to-workspace 4;
-      "Mod+Shift+5".action = move-column-to-workspace 5;
+      # "Mod+Shift+1".action = move-column-to-workspace 1;
+      # "Mod+Shift+2".action = move-column-to-workspace 2;
+      # "Mod+Shift+3".action = move-column-to-workspace 3;
+      # "Mod+Shift+4".action = move-column-to-workspace 4;
+      # "Mod+Shift+5".action = move-column-to-workspace 5;
 
       # Column sizing
       "Mod+R".action = switch-preset-column-width;
@@ -159,9 +163,9 @@
       };
 
       # Screenshots
-      "Print".action = screenshot;
-      "Mod+Print".action = screenshot-screen;
-      "Mod+Shift+Print".action = screenshot-window;
+      # "Print".action = screenshot;
+      # "Mod+Print".action = screenshot-screen;
+      # "Mod+Shift+Print".action = screenshot-window;
 
       # Media keys
       "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
@@ -338,8 +342,8 @@
   # Git
   programs.git = {
     enable = true;
-    userName = "Oskar";  # Change this
-    userEmail = "oskar@example.com";  # Change this
+    userName = "oskar1233";
+    userEmail = "me@oskar12333.dev";
   };
 
   # Bash

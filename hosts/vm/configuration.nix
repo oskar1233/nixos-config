@@ -13,6 +13,17 @@
   # SPICE guest tools for clipboard sharing, display resize (if using SPICE)
   services.spice-vdagentd.enable = true;
 
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/9307b364-0b54-4799-8031-ef809b1af2ef";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/758B-FF17";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
   # Shared folders (if configured in VM)
   # fileSystems."/mnt/shared" = {
   #   device = "share";
