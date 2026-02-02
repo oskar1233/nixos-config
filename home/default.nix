@@ -1,12 +1,47 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, zen-browser, ... }:
 
 {
+  imports = [ zen-browser.homeModules.beta ];
+
   home.username = "oskar1233";
   home.homeDirectory = "/home/oskar1233";
   home.stateVersion = "24.11";
 
-  # Let home-manager manage itself
+  # Let home-manager manage iself
   programs.home-manager.enable = true;
+
+  # Zen browser
+  programs.zen-browser.enable = true;
+
+  # direnv
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+  };
+
+  # zsh
+  programs.zsh = {
+    enable = true;
+
+    plugins = [
+      # zsh-vi-mode - better vim mode in zsh
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
+
+    oh-my-zsh = {
+      enable = true;
+      theme = "3den";
+      plugins = [
+        "git"
+        "direnv"
+      ];
+    };
+  };
 
   # Packages
   home.packages = with pkgs; [
@@ -29,12 +64,13 @@
     eza               # better ls
     bat               # better cat
     fzf
+    fff
     jq
     lazygit
     tmux
 
     # Other
-    # google-chrome
+    zen-browser
   ];
 
   # Neovim - using config directory approach
@@ -43,11 +79,26 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    vimdiffAlias = true;
+    withNodeJs = true;
+    withPerl = true;
+    withPython3 = true;
+    withRuby = true;
+    extraConfig = ":luafile ~/.config/nvim/init.lua";
   };
 
   # Empty neovim config directory - add your config here
   # Structure: ~/.config/nvim/init.lua or ~/.config/nvim/lua/...
   xdg.configFile."nvim/.keep".text = "";
+
+  # xdg.configFile."nvim/init.lua" = {
+  #   source = ../nvim/init.lua;
+  #   # recursive = true;
+  # };
+  # xdg.configFile."nvim/init.lua" = {
+  #   source = ./nvim/init.lua;
+  #   recursive = true;
+  # };
 
   # Niri configuration
   programs.niri.settings = {

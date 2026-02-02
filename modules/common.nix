@@ -1,4 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, zen-browser, ... }:
+
+let
+  fs = lib.fileset;
+  sourceFiles = ../nvim;
+in
+
+fs.trace sourceFiles
 
 {
   # Nix settings
@@ -75,6 +82,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.oskar1233 = import ../home;
+    extraSpecialArgs = { inherit zen-browser; };
   };
 
   # Security
